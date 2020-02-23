@@ -1,0 +1,99 @@
+<!doctype HTML>
+<html>
+<script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+  function getData() {
+
+    $.get("https://vast-earth-78951.herokuapp.com//getCreditCardDetails", function (data, status) {
+
+      var expenseCat = data.expenseCatogories;
+      var pie_chart = document.getElementsByClassName("pie-chart");
+      for (i = 0; i < expenseCat.length; i++) {
+        pie_chart[i].setAttribute('theta-length', expenseCat[i].thetaLength);
+        pie_chart[i].setAttribute('theta-start', expenseCat[i].thetaStart);
+      }
+
+      var balance = document.getElementById("balance");
+      balance.setAttribute('text', "value: " + data.availableBalance + "; color: white;");
+
+      var txnList = data.transactionList;
+      var txn_date = document.getElementsByClassName("txn-date");
+      var txn_amt = document.getElementsByClassName("txn-amt");
+      for (i = 0; i < expenseCat.length; i++) {
+        txn_date[i].setAttribute('text', "value: " + txnList[i].date + "; color: white;");
+        txn_amt[i].setAttribute('text', "value: " + txnList[i].totalExpence + "; color: white;");
+      }
+    });
+  }
+</script>
+
+<body style='margin : 0px; overflow: hidden;'>
+  <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
+    <a-marker preset="hiro">
+
+      <a-circle color="#ec7373" radius="0.6" position="0 1.5 0">
+        <a-entity text="value: Credit Score; color: white;" position="1.5 0 0" scale="4 4 4" font="exo2bold">
+        </a-entity>
+        <a-entity text="value: 250; color: white;" position="1.2 -0.2 0" scale="3 3 3" font="exo2bold" id="balance">
+        </a-entity>
+      </a-circle>
+
+
+      <a-plane color="#a7e9af" height="0.2" width="3" position="0 0.5 0" rotation="0 0 0">
+        <a-entity text="value: Next Due Amount; color: white;" position="1 0 0" scale="4 4 4" font="exo2bold">
+        </a-entity>
+        <a-entity text="value: $10,000; color: white;" position="2 0 0" scale="3 3 3" font="exo2bold" id="balance">
+        </a-entity>
+      </a-plane>
+
+
+      <a-plane color="#6a8caf" height="0.2" width="3" position="0 -0.5 0" rotation="0 0 0">
+        <a-entity text="value: 02/15/2020; color: white;" position="1 0 0" scale="4 4 4" font="exo2bold"
+          class="txn-date">
+        </a-entity>
+        <a-entity text="value: $12; color: white;" position="2.5 0 0" scale="4 4 4" font="exo2bold" class="txn-amt">
+        </a-entity>
+      </a-plane>
+
+      <a-plane color="#6a8caf" height="0.2" width="3" position="0 -0.8 0" rotation="0 0 0">
+        <a-entity text="value: 02/16/2020; color: white;" position="1 0 0" scale="4 4 4" font="exo2bold"
+          class="txn-date">
+        </a-entity>
+        <a-entity text="value: $15; color: white;" position="2.5 0 0" scale="4 4 4" font="exo2bold" class="txn-amt">
+        </a-entity>
+      </a-plane>
+
+      <a-plane color="#6a8caf" height="0.2" width="3" position="0 -1.1 0" rotation="0 0 0">
+        <a-entity text="value: 02/17/2020; color: white;" position="1 0 0" scale="4 4 4" font="exo2bold"
+          class="txn-date">
+        </a-entity>
+        <a-entity text="value: $30; color: white;" position="2.5 0 0" scale="4 4 4" font="exo2bold" class="txn-amt">
+        </a-entity>
+      </a-plane>
+
+      <a-plane color="#6a8caf" height="0.2" width="3" position="0 -1.4 0" rotation="0 0 0">
+        <a-entity text="value: 02/18/2020; color: white;" position="1 0 0" scale="4 4 4" font="exo2bold"
+          class="txn-date">
+        </a-entity>
+        <a-entity text="value: $20; color: white;" position="2.5 0 0" scale="4 4 4" font="exo2bold" class="txn-amt">
+        </a-entity>
+      </a-plane>
+
+      <a-plane color="#6a8caf" height="0.2" width="3" position="0 -1.7 0" rotation="0 0 0">
+        <a-entity text="value: 02/19/2020; color: white;" position="1 0 0" scale="4 4 4" font="exo2bold"
+          class="txn-date">
+        </a-entity>
+        <a-entity text="value: $70; color: white;" position="2.5 0 0" scale="4 4 4" font="exo2bold" class="txn-amt">
+        </a-entity>
+      </a-plane>
+
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+
+</html>

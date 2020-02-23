@@ -1,0 +1,7 @@
+{
+  "name": "BankingAR",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

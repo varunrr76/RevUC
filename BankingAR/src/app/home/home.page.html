@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Banking App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-card class="ion-padding">
+    <form (ngSubmit)="submitForm()" >
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Username</ion-label>
+        <ion-input type="text" required  [(ngModel)]="loginDetails.username" name="username"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Password</ion-label>
+        <ion-input type="password" required [(ngModel)]="loginDetails.password" name="password"></ion-input>
+      </ion-item>
+
+
+      <ion-grid>
+        <ion-row>
+          <ion-col offset="4" size="4">
+            <div>
+              <ion-button color="primary" type="submit">Submit</ion-button>
+            </div>
+          </ion-col>
+          <ion-col>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </form>
+  </ion-card>
+
+</ion-content>
