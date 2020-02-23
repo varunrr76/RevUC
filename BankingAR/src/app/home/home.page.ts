@@ -20,16 +20,16 @@ export class HomePage {
   }
 
   submitForm() {
-    this.global.navigateToURL('/dashboard', []);
-    // this.global.showLoading('Logging you in');
-    // this.global.postRequest('https://vast-earth-78951.herokuapp.com/user', this.loginDetails).then(response => {
-    //   this.global.hideLoading();
-    //   this.global.navigateToURL('/dashboard', []);
-    // })
-    //   .catch(error => {
-    //     this.global.hideLoading();
-    //     this.global.presentAlert(error.error);
-    //   })
+    // this.global.navigateToURL('/dashboard', []);
+    this.global.showLoading('Logging you in');
+    this.global.postRequest('https://vast-earth-78951.herokuapp.com/user', this.loginDetails).then(response => {
+      this.global.hideLoading();
+      this.global.navigateToURL('/dashboard', []);
+    })
+      .catch(error => {
+        this.global.hideLoading();
+        this.global.presentAlert(error.error);
+      })
   }
 
 }
